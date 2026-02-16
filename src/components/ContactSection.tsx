@@ -138,7 +138,7 @@ const ContactSection = () => {
             <div className="overflow-hidden rounded-xl">
               <img
                 src="/photo/2.jpeg"
-                alt="Transformare client "
+                alt="Transformare client23"
                 className="w-full h-auto"
               />
             </div>
