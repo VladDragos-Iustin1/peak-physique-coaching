@@ -12,7 +12,6 @@ const goals = [
   "Recompoziție corporală",
   "Creștere masă musculară",
   "Slăbire / Definire",
-  "Menținere & Optimizare",
 ];
 
 const durations = ["1 lună", "3 luni", "6 luni", "12 luni"];
@@ -65,6 +64,7 @@ const ContactSection = () => {
       reply_to: clientEmail,
       name: clientName,
       email: clientEmail,
+      phone: String(formData.get("phone") ?? ""),
       instagram: String(formData.get("instagram") ?? ""),
       age: String(formData.get("age") ?? ""),
       height: String(formData.get("height") ?? ""),
@@ -130,14 +130,14 @@ const ContactSection = () => {
           <div className="grid md:grid-cols-2 gap-4 rounded-2xl border border-white/10 bg-black/30 p-3 shadow-[0_0_40px_rgba(255,205,110,0.08)]">
             <div className="overflow-hidden rounded-xl">
               <img
-                src="/photo/1.webp"
+                src="/photo/1.jpeg"
                 alt="Transformare client 1"
                 className="w-full h-auto"
               />
             </div>
             <div className="overflow-hidden rounded-xl">
               <img
-                src="/photo/2.webp"
+                src="/photo/2.jpeg"
                 alt="Transformare client 2"
                 className="w-full h-auto"
               />
@@ -146,6 +146,83 @@ const ContactSection = () => {
           <p className="text-xs text-muted-foreground text-center mt-3">
             Rezultatele clienților mei — poze reale, muncă reală.
           </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="mt-12 rounded-2xl border border-white/10 bg-card/80 p-6 md:p-10 shadow-[0_0_50px_rgba(0,0,0,0.4)] backdrop-blur"
+        >
+          <h3 className="font-display text-xl md:text-2xl font-bold uppercase text-primary mb-6 flex items-center gap-2">
+            🔥 Ce primești în cadrul coachingului
+          </h3>
+          <ul className="space-y-3 text-foreground/90">
+            <li className="flex items-start gap-3">
+              <span className="text-primary mt-1">•</span>
+              <span>
+                Program de antrenament complet, personalizat 100% în funcție de
+                obiectivele tale
+              </span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-primary mt-1">•</span>
+              <span>
+                Plan nutrițional adaptat fazei în care te afli (masă / definire
+                / menținere) – include plan alimentar complet, calcul de
+                macronutrienți & calorii, monitorizare lichide & sare
+              </span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-primary mt-1">•</span>
+              <span>Protocol de suplimentare personalizat</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-primary mt-1">•</span>
+              <span>Analiză video a execuției exercițiilor</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-primary mt-1">•</span>
+              <span>Monitorizarea recuperării</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-primary mt-1">•</span>
+              <span>Monitorizarea digestiei</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-primary mt-1">•</span>
+              <span>Monitorizarea somnului</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-primary mt-1">•</span>
+              <span>Suport 24/7 pe WhatsApp</span>
+            </li>
+          </ul>
+
+          <div className="mt-8 pt-6 border-t border-white/10">
+            <h3 className="font-display text-xl md:text-2xl font-bold uppercase text-primary mb-6 flex items-center gap-2">
+              📅 Sistem de check-in
+            </h3>
+            <ul className="space-y-3 text-foreground/90">
+              <li className="flex items-start gap-3">
+                <span className="text-primary mt-1">•</span>
+                <span>
+                  <strong className="text-foreground">Off-season:</strong> 1
+                  check-in oficial pe săptămână
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-primary mt-1">•</span>
+                <span>
+                  <strong className="text-foreground">
+                    Prep (pregătire competițională):
+                  </strong>{" "}
+                  check-in zilnic
+                </span>
+              </li>
+            </ul>
+          </div>
         </motion.div>
 
         <motion.form
@@ -194,8 +271,20 @@ const ContactSection = () => {
             </div>
           </div>
 
-          {/* Instagram & Age */}
+          {/* Phone & Instagram */}
           <div className="grid md:grid-cols-2 gap-5">
+            <div>
+              <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block">
+                Telefon
+              </label>
+              <Input
+                required
+                name="phone"
+                type="tel"
+                placeholder="07xx xxx xxx"
+                className="bg-card border-border rounded-sm h-12 focus:border-primary"
+              />
+            </div>
             <div>
               <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block">
                 <Instagram className="w-4 h-4 inline mr-1.5 -mt-0.5" />
@@ -208,6 +297,10 @@ const ContactSection = () => {
                 className="bg-card border-border rounded-sm h-12 focus:border-primary"
               />
             </div>
+          </div>
+
+          {/* Age, Height & Weight */}
+          <div className="grid md:grid-cols-3 gap-5">
             <div>
               <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block">
                 Vârstă
@@ -222,10 +315,6 @@ const ContactSection = () => {
                 className="bg-card border-border rounded-sm h-12 focus:border-primary"
               />
             </div>
-          </div>
-
-          {/* Height & Weight */}
-          <div className="grid md:grid-cols-2 gap-5">
             <div>
               <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block">
                 Înălțime (cm)
