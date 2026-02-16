@@ -55,11 +55,16 @@ const ContactSection = () => {
 
     setIsSubmitting(true);
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const clientEmail = String(formData.get("email") ?? "");
+    const clientName = String(formData.get("name") ?? "");
     const params = {
       to_email: "razvangalata02@gmail.com",
-      name: String(formData.get("name") ?? ""),
-      email: String(formData.get("email") ?? ""),
+      from_name: clientName,
+      reply_to: clientEmail,
+      name: clientName,
+      email: clientEmail,
       instagram: String(formData.get("instagram") ?? ""),
       age: String(formData.get("age") ?? ""),
       height: String(formData.get("height") ?? ""),
@@ -75,13 +80,20 @@ const ContactSection = () => {
         title: "Mesaj trimis cu succes!",
         description: "Te voi contacta în maximum 24 de ore.",
       });
-      e.currentTarget.reset();
+      form.reset();
       setSelectedGoal("");
       setSelectedDuration("");
     } catch (error) {
+      const errorMessage =
+        typeof error === "object" && error !== null && "text" in error
+          ? String((error as { text?: string }).text)
+          : typeof error === "object" && error !== null && "message" in error
+            ? String((error as { message?: string }).message)
+            : "Nu am putut trimite mesajul. Te rog încearcă din nou.";
+      console.error("EmailJS send failed", error);
       toast({
         title: "Eroare la trimitere",
-        description: "Nu am putut trimite mesajul. Te rog încearcă din nou.",
+        description: errorMessage,
       });
     } finally {
       setIsSubmitting(false);
@@ -116,18 +128,18 @@ const ContactSection = () => {
           className="mt-12"
         >
           <div className="grid md:grid-cols-2 gap-4 rounded-2xl border border-white/10 bg-black/30 p-3 shadow-[0_0_40px_rgba(255,205,110,0.08)]">
-            <div className="aspect-[4/3] overflow-hidden rounded-xl">
+            <div className="overflow-hidden rounded-xl">
               <img
-                src="/placeholder-1.jpg"
+                src="/photo/1.webp"
                 alt="Transformare client 1"
-                className="h-full w-full object-cover"
+                className="w-full h-auto"
               />
             </div>
-            <div className="aspect-[4/3] overflow-hidden rounded-xl">
+            <div className="overflow-hidden rounded-xl">
               <img
-                src="/placeholder-2.jpg"
+                src="/photo/2.webp"
                 alt="Transformare client 2"
-                className="h-full w-full object-cover"
+                className="w-full h-auto"
               />
             </div>
           </div>
