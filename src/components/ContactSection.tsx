@@ -21,9 +21,34 @@ const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState("");
   const [selectedDuration, setSelectedDuration] = useState("");
+  const [gdprAccepted, setGdprAccepted] = useState(false);
+  const [messageLength, setMessageLength] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Honeypot anti-bot: dacă câmpul ascuns este completat, ignorăm silențios
+    const honeypot = (
+      e.currentTarget.elements.namedItem("website") as HTMLInputElement
+    )?.value;
+    if (honeypot) return;
+
+    // Rate limiting — cooldown 5 minute
+    const RATE_LIMIT_MS = 5 * 60 * 1000;
+    const lastSubmission = localStorage.getItem("form_last_submission");
+    if (lastSubmission && Date.now() - Number(lastSubmission) < RATE_LIMIT_MS) {
+      const remaining = Math.ceil(
+        (RATE_LIMIT_MS - (Date.now() - Number(lastSubmission))) / 60000,
+      );
+      toast({
+        title: "Prea multe încercări",
+        description: `Poți trimite din nou în ${remaining} minut${
+          remaining === 1 ? "" : "e"
+        }.`,
+      });
+      return;
+    }
 
     if (!selectedDuration || !selectedGoal) {
       toast({
@@ -52,37 +77,83 @@ const ContactSection = () => {
       return;
     }
 
-    setIsSubmitting(true);
-
     const form = e.currentTarget;
     const formData = new FormData(form);
     const clientEmail = String(formData.get("email") ?? "");
     const clientName = String(formData.get("name") ?? "");
+    const phoneValue = String(formData.get("phone") ?? "");
+    const instagramValue = String(formData.get("instagram") ?? "");
+    const messageValue = String(formData.get("message") ?? "");
+
+    // Validare telefon românesc
+    const phoneClean = phoneValue.replace(/[\s-]/g, "");
+    if (!/^(\+40|0)[0-9]{9}$/.test(phoneClean)) {
+      toast({
+        title: "Telefon invalid",
+        description: "Introdu un număr valid (ex: 0712 345 678 sau +40712345678).",
+      });
+      return;
+    }
+
+    // Validare Instagram username
+    const instagramClean = instagramValue.startsWith("@")
+      ? instagramValue.slice(1)
+      : instagramValue;
+    if (!/^[a-zA-Z0-9_.]{1,30}$/.test(instagramClean)) {
+      toast({
+        title: "Username Instagram invalid",
+        description:
+          "Introdu un username valid (litere, cifre, puncte, underscore, max 30 caractere).",
+      });
+      return;
+    }
+
+    // Validare GDPR
+    if (!gdprAccepted) {
+      toast({
+        title: "Consimțământ necesar",
+        description:
+          "Te rog să accepți prelucrarea datelor înainte să trimiți.",
+      });
+      return;
+    }
+
+    // Lungime maximă mesaj
+    if (messageValue.length > 1000) {
+      toast({
+        title: "Mesaj prea lung",
+        description: `Mesajul nu poate depăși 1000 de caractere (ai ${messageValue.length}).`,
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
     const params = {
       to_email: "razvangalata02@gmail.com",
       from_name: clientName,
       reply_to: clientEmail,
       name: clientName,
       email: clientEmail,
-      phone: String(formData.get("phone") ?? ""),
-      instagram: String(formData.get("instagram") ?? ""),
+      phone: phoneValue,
+      instagram: instagramValue,
       age: String(formData.get("age") ?? ""),
       height: String(formData.get("height") ?? ""),
       weight: String(formData.get("weight") ?? ""),
       duration: selectedDuration,
       goal: selectedGoal,
-      message: String(formData.get("message") ?? ""),
+      message: messageValue,
     };
 
     try {
       await emailjs.send(serviceId, templateId, params, publicKey);
-      toast({
-        title: "Mesaj trimis cu succes!",
-        description: "Te voi contacta în maximum 24 de ore.",
-      });
+      localStorage.setItem("form_last_submission", String(Date.now()));
       form.reset();
       setSelectedGoal("");
       setSelectedDuration("");
+      setGdprAccepted(false);
+      setMessageLength(0);
+      setSubmitted(true);
     } catch (error) {
       const errorMessage =
         typeof error === "object" && error !== null && "text" in error
@@ -225,6 +296,31 @@ const ContactSection = () => {
           </div>
         </motion.div>
 
+        {submitted ? (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="mt-12 rounded-2xl border border-primary/30 bg-card/80 p-10 md:p-16 shadow-[0_0_50px_rgba(255,205,110,0.12)] backdrop-blur text-center"
+          >
+            <div className="text-5xl mb-6">🏆</div>
+            <h2 className="font-display text-2xl md:text-3xl font-bold uppercase mb-3">
+              Mesaj trimis cu succes!
+            </h2>
+            <p className="text-muted-foreground max-w-sm mx-auto mb-8">
+              Te voi contacta în maximum{" "}
+              <span className="text-primary font-semibold">24 de ore</span>.
+              Pregătește-te să începi transformarea.
+            </p>
+            <Button
+              onClick={() => setSubmitted(false)}
+              variant="outline"
+              className="border-white/20 text-muted-foreground hover:text-foreground font-display uppercase tracking-wider text-xs rounded-sm"
+            >
+              Trimite alt mesaj
+            </Button>
+          </motion.div>
+        ) : (
         <motion.form
           onSubmit={handleSubmit}
           initial={{ opacity: 0, y: 20 }}
@@ -244,28 +340,59 @@ const ContactSection = () => {
               Completează datele de mai jos și te contactez pe Instagram.
             </p>
           </div>
+          {/* Honeypot anti-bot — invizibil pentru utilizatori, vizibil pentru boți */}
+          <div
+            style={{
+              position: "absolute",
+              left: "-9999px",
+              top: "-9999px",
+              opacity: 0,
+              pointerEvents: "none",
+            }}
+            aria-hidden="true"
+          >
+            <input
+              type="text"
+              name="website"
+              autoComplete="off"
+              tabIndex={-1}
+            />
+          </div>
+
           {/* Name & Email */}
           <div className="grid md:grid-cols-2 gap-5">
             <div>
-              <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block">
+              <label
+                htmlFor="field-name"
+                className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+              >
                 Nume
               </label>
               <Input
+                id="field-name"
                 required
                 name="name"
                 placeholder="Numele tău"
+                maxLength={100}
+                autoComplete="name"
                 className="bg-card border-border rounded-sm h-12 focus:border-primary"
               />
             </div>
             <div>
-              <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block">
+              <label
+                htmlFor="field-email"
+                className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+              >
                 Email
               </label>
               <Input
+                id="field-email"
                 required
                 name="email"
                 type="email"
                 placeholder="email@exemplu.ro"
+                maxLength={254}
+                autoComplete="email"
                 className="bg-card border-border rounded-sm h-12 focus:border-primary"
               />
             </div>
@@ -274,26 +401,39 @@ const ContactSection = () => {
           {/* Phone & Instagram */}
           <div className="grid md:grid-cols-2 gap-5">
             <div>
-              <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block">
+              <label
+                htmlFor="field-phone"
+                className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+              >
                 Telefon
               </label>
               <Input
+                id="field-phone"
                 required
                 name="phone"
                 type="tel"
+                inputMode="tel"
                 placeholder="07xx xxx xxx"
+                maxLength={20}
+                autoComplete="tel"
                 className="bg-card border-border rounded-sm h-12 focus:border-primary"
               />
             </div>
             <div>
-              <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block">
+              <label
+                htmlFor="field-instagram"
+                className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+              >
                 <Instagram className="w-4 h-4 inline mr-1.5 -mt-0.5" />
                 Instagram
               </label>
               <Input
+                id="field-instagram"
                 required
                 name="instagram"
                 placeholder="@username"
+                maxLength={31}
+                autoComplete="off"
                 className="bg-card border-border rounded-sm h-12 focus:border-primary"
               />
             </div>
@@ -302,13 +442,18 @@ const ContactSection = () => {
           {/* Age, Height & Weight */}
           <div className="grid md:grid-cols-3 gap-5">
             <div>
-              <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block">
+              <label
+                htmlFor="field-age"
+                className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+              >
                 Vârstă
               </label>
               <Input
+                id="field-age"
                 required
                 name="age"
                 type="number"
+                inputMode="numeric"
                 min={14}
                 max={99}
                 placeholder="Ex: 28"
@@ -316,13 +461,18 @@ const ContactSection = () => {
               />
             </div>
             <div>
-              <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block">
+              <label
+                htmlFor="field-height"
+                className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+              >
                 Înălțime (cm)
               </label>
               <Input
+                id="field-height"
                 required
                 name="height"
                 type="number"
+                inputMode="numeric"
                 min={100}
                 max={250}
                 placeholder="Ex: 180"
@@ -330,13 +480,18 @@ const ContactSection = () => {
               />
             </div>
             <div>
-              <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block">
+              <label
+                htmlFor="field-weight"
+                className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+              >
                 Greutate (kg)
               </label>
               <Input
+                id="field-weight"
                 required
                 name="weight"
                 type="number"
+                inputMode="numeric"
                 min={30}
                 max={200}
                 placeholder="Ex: 85"
@@ -395,15 +550,62 @@ const ContactSection = () => {
 
           {/* Message */}
           <div>
-            <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block">
-              Mesaj (opțional)
-            </label>
+            <div className="flex justify-between items-baseline mb-2">
+              <label
+                htmlFor="field-message"
+                className="text-sm font-display uppercase tracking-wider text-muted-foreground"
+              >
+                Mesaj (opțional)
+              </label>
+              <span
+                className={`text-xs tabular-nums transition-colors ${
+                  messageLength > 900
+                    ? "text-destructive"
+                    : "text-muted-foreground"
+                }`}
+              >
+                {messageLength}/1000
+              </span>
+            </div>
             <Textarea
+              id="field-message"
               name="message"
               placeholder="Spune-mi mai multe despre experiența ta, obiective, etc..."
               rows={4}
+              maxLength={1000}
+              onChange={(e) => setMessageLength(e.target.value.length)}
               className="bg-card border-border rounded-sm focus:border-primary resize-none"
             />
+          </div>
+
+          {/* GDPR Checkbox */}
+          <div className="flex items-start gap-3 rounded-sm border border-white/10 bg-black/20 p-4">
+            <input
+              id="field-gdpr"
+              type="checkbox"
+              checked={gdprAccepted}
+              onChange={(e) => setGdprAccepted(e.target.checked)}
+              className="mt-0.5 h-4 w-4 shrink-0 accent-[hsl(var(--primary))] cursor-pointer"
+            />
+            <label
+              htmlFor="field-gdpr"
+              className="text-xs text-muted-foreground leading-relaxed cursor-pointer"
+            >
+              Sunt de acord cu prelucrarea datelor personale (nume, email,
+              telefon, date fizice) în scopul contactării pentru servicii de
+              coaching online. Datele nu vor fi stocate pe servere proprii și nu
+              vor fi transmise unor terți.{" "}
+              <a
+                href="/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-primary transition-colors"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Citește Politica de Confidențialitate
+              </a>
+              . Înțeleg că pot retrage consimțământul oricând.
+            </label>
           </div>
 
           <Button
@@ -422,6 +624,7 @@ const ContactSection = () => {
             )}
           </Button>
         </motion.form>
+        )}
       </div>
     </section>
   );
