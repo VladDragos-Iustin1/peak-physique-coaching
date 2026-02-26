@@ -4,7 +4,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { Send, Instagram } from "lucide-react";
+import {
+  Send,
+  Instagram,
+  Dumbbell,
+  Utensils,
+  FlaskConical,
+  Video,
+  HeartPulse,
+  Beef,
+  Moon,
+  MessageCircle,
+  CalendarDays,
+  CalendarCheck2,
+} from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 const goals = [
@@ -90,7 +103,8 @@ const ContactSection = () => {
     if (!/^(\+40|0)[0-9]{9}$/.test(phoneClean)) {
       toast({
         title: "Telefon invalid",
-        description: "Introdu un număr valid (ex: 0712 345 678 sau +40712345678).",
+        description:
+          "Introdu un număr valid (ex: 0712 345 678 sau +40712345678).",
       });
       return;
     }
@@ -229,70 +243,86 @@ const ContactSection = () => {
           <h3 className="font-display text-xl md:text-2xl font-bold uppercase text-primary mb-6 flex items-center gap-2">
             🔥 Ce primești în cadrul coachingului
           </h3>
-          <ul className="space-y-3 text-foreground/90">
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1">•</span>
-              <span>
-                Program de antrenament complet, personalizat 100% în funcție de
-                obiectivele tale
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1">•</span>
-              <span>
-                Plan nutrițional adaptat fazei în care te afli (masă / definire
-                / menținere) – include plan alimentar complet, calcul de
-                macronutrienți & calorii, monitorizare lichide & sare
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1">•</span>
-              <span>Protocol de suplimentare personalizat</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1">•</span>
-              <span>Analiză video a execuției exercițiilor</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1">•</span>
-              <span>Monitorizarea recuperării</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1">•</span>
-              <span>Monitorizarea digestiei</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1">•</span>
-              <span>Monitorizarea somnului</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="text-primary mt-1">•</span>
-              <span>Suport 24/7 pe WhatsApp</span>
-            </li>
-          </ul>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-foreground/90">
+            {[
+              {
+                icon: Dumbbell,
+                text: "Program de antrenament complet, personalizat 100% în funcție de obiectivele tale",
+              },
+              {
+                icon: Utensils,
+                text: "Plan nutrițional adaptat fazei în care te afli (masă / definire / menținere) – include plan alimentar complet, calcul de macronutrienți & calorii, monitorizare lichide & sare",
+              },
+              {
+                icon: FlaskConical,
+                text: "Protocol de suplimentare personalizat",
+              },
+              {
+                icon: Video,
+                text: "Analiză video a execuției exercițiilor",
+              },
+              {
+                icon: HeartPulse,
+                text: "Monitorizarea recuperării",
+              },
+              {
+                icon: Beef,
+                text: "Monitorizarea digestiei",
+              },
+              {
+                icon: Moon,
+                text: "Monitorizarea somnului",
+              },
+              {
+                icon: MessageCircle,
+                text: "Suport 24/7 pe WhatsApp",
+              },
+            ].map(({ icon: Icon, text }) => (
+              <div
+                key={text}
+                className="group flex items-start gap-3 rounded-xl border border-white/10 bg-card/40 p-4 transition-all duration-300 hover:border-primary/40 hover:bg-card/70 hover:shadow-[0_0_24px_rgba(255,205,110,0.12)] cursor-default"
+              >
+                <span className="mt-0.5 shrink-0 text-primary/70 group-hover:text-primary transition-colors duration-300">
+                  <Icon size={18} />
+                </span>
+                <span className="text-sm leading-relaxed">{text}</span>
+              </div>
+            ))}
+          </div>
 
           <div className="mt-8 pt-6 border-t border-white/10">
             <h3 className="font-display text-xl md:text-2xl font-bold uppercase text-primary mb-6 flex items-center gap-2">
               📅 Sistem de check-in
             </h3>
-            <ul className="space-y-3 text-foreground/90">
-              <li className="flex items-start gap-3">
-                <span className="text-primary mt-1">•</span>
-                <span>
-                  <strong className="text-foreground">Off-season:</strong> 1
-                  check-in oficial pe săptămână
-                </span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-primary mt-1">•</span>
-                <span>
-                  <strong className="text-foreground">
-                    Prep (pregătire competițională):
-                  </strong>{" "}
-                  check-in zilnic
-                </span>
-              </li>
-            </ul>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-foreground/90">
+              {[
+                {
+                  icon: CalendarDays,
+                  label: "Off-season",
+                  text: "1 check-in oficial pe săptămână",
+                },
+                {
+                  icon: CalendarCheck2,
+                  label: "Prep (pregătire competițională)",
+                  text: "check-in zilnic",
+                },
+              ].map(({ icon: Icon, label, text }) => (
+                <div
+                  key={label}
+                  className="group flex items-start gap-3 rounded-xl border border-white/10 bg-card/40 p-4 transition-all duration-300 hover:border-primary/40 hover:bg-card/70 hover:shadow-[0_0_24px_rgba(255,205,110,0.12)] cursor-default"
+                >
+                  <span className="mt-0.5 shrink-0 text-primary/70 group-hover:text-primary transition-colors duration-300">
+                    <Icon size={18} />
+                  </span>
+                  <span className="text-sm leading-relaxed">
+                    <strong className="text-foreground block mb-0.5">
+                      {label}:
+                    </strong>
+                    {text}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
 
@@ -321,309 +351,309 @@ const ContactSection = () => {
             </Button>
           </motion.div>
         ) : (
-        <motion.form
-          onSubmit={handleSubmit}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-12 space-y-6 rounded-2xl border border-white/10 bg-card/80 p-6 md:p-10 shadow-[0_0_50px_rgba(0,0,0,0.4)] backdrop-blur"
-        >
-          <div>
-            <p className="text-primary font-display uppercase tracking-[0.2em] text-sm mb-2">
-              Contactează-mă
-            </p>
-            <h2 className="font-display text-2xl md:text-3xl font-bold uppercase">
-              Completează formularul
-            </h2>
-            <p className="text-muted-foreground mt-3">
-              Completează datele de mai jos și te contactez pe Instagram.
-            </p>
-          </div>
-          {/* Honeypot anti-bot — invizibil pentru utilizatori, vizibil pentru boți */}
-          <div
-            style={{
-              position: "absolute",
-              left: "-9999px",
-              top: "-9999px",
-              opacity: 0,
-              pointerEvents: "none",
-            }}
-            aria-hidden="true"
+          <motion.form
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-12 space-y-6 rounded-2xl border border-white/10 bg-card/80 p-6 md:p-10 shadow-[0_0_50px_rgba(0,0,0,0.4)] backdrop-blur"
           >
-            <input
-              type="text"
-              name="website"
-              autoComplete="off"
-              tabIndex={-1}
-            />
-          </div>
-
-          {/* Name & Email */}
-          <div className="grid md:grid-cols-2 gap-5">
             <div>
-              <label
-                htmlFor="field-name"
-                className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
-              >
-                Nume
-              </label>
-              <Input
-                id="field-name"
-                required
-                name="name"
-                placeholder="Numele tău"
-                maxLength={100}
-                autoComplete="name"
-                className="bg-card border-border rounded-sm h-12 focus:border-primary"
-              />
+              <p className="text-primary font-display uppercase tracking-[0.2em] text-sm mb-2">
+                Contactează-mă
+              </p>
+              <h2 className="font-display text-2xl md:text-3xl font-bold uppercase">
+                Completează formularul
+              </h2>
+              <p className="text-muted-foreground mt-3">
+                Completează datele de mai jos și te contactez pe Instagram.
+              </p>
             </div>
-            <div>
-              <label
-                htmlFor="field-email"
-                className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
-              >
-                Email
-              </label>
-              <Input
-                id="field-email"
-                required
-                name="email"
-                type="email"
-                placeholder="email@exemplu.ro"
-                maxLength={254}
-                autoComplete="email"
-                className="bg-card border-border rounded-sm h-12 focus:border-primary"
-              />
-            </div>
-          </div>
-
-          {/* Phone & Instagram */}
-          <div className="grid md:grid-cols-2 gap-5">
-            <div>
-              <label
-                htmlFor="field-phone"
-                className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
-              >
-                Telefon
-              </label>
-              <Input
-                id="field-phone"
-                required
-                name="phone"
-                type="tel"
-                inputMode="tel"
-                placeholder="07xx xxx xxx"
-                maxLength={20}
-                autoComplete="tel"
-                className="bg-card border-border rounded-sm h-12 focus:border-primary"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="field-instagram"
-                className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
-              >
-                <Instagram className="w-4 h-4 inline mr-1.5 -mt-0.5" />
-                Instagram
-              </label>
-              <Input
-                id="field-instagram"
-                required
-                name="instagram"
-                placeholder="@username"
-                maxLength={31}
-                autoComplete="off"
-                className="bg-card border-border rounded-sm h-12 focus:border-primary"
-              />
-            </div>
-          </div>
-
-          {/* Age, Height & Weight */}
-          <div className="grid md:grid-cols-3 gap-5">
-            <div>
-              <label
-                htmlFor="field-age"
-                className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
-              >
-                Vârstă
-              </label>
-              <Input
-                id="field-age"
-                required
-                name="age"
-                type="number"
-                inputMode="numeric"
-                min={14}
-                max={99}
-                placeholder="Ex: 28"
-                className="bg-card border-border rounded-sm h-12 focus:border-primary"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="field-height"
-                className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
-              >
-                Înălțime (cm)
-              </label>
-              <Input
-                id="field-height"
-                required
-                name="height"
-                type="number"
-                inputMode="numeric"
-                min={100}
-                max={250}
-                placeholder="Ex: 180"
-                className="bg-card border-border rounded-sm h-12 focus:border-primary"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="field-weight"
-                className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
-              >
-                Greutate (kg)
-              </label>
-              <Input
-                id="field-weight"
-                required
-                name="weight"
-                type="number"
-                inputMode="numeric"
-                min={30}
-                max={200}
-                placeholder="Ex: 85"
-                className="bg-card border-border rounded-sm h-12 focus:border-primary"
-              />
-            </div>
-          </div>
-
-          {/* Duration */}
-          <div>
-            <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-3 block">
-              Pe câte luni vrei să lucrăm?
-            </label>
-            <input type="hidden" name="duration" value={selectedDuration} />
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {durations.map((d) => (
-                <button
-                  key={d}
-                  type="button"
-                  onClick={() => setSelectedDuration(d)}
-                  className={`py-3 px-4 rounded-sm border font-display uppercase tracking-wider text-sm transition-all ${
-                    selectedDuration === d
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "bg-card border-border text-muted-foreground hover:border-primary/50"
-                  }`}
-                >
-                  {d}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Goal */}
-          <div>
-            <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-3 block">
-              Care este scopul tău?
-            </label>
-            <input type="hidden" name="goal" value={selectedGoal} />
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {goals.map((goal) => (
-                <button
-                  key={goal}
-                  type="button"
-                  onClick={() => setSelectedGoal(goal)}
-                  className={`py-3 px-4 rounded-sm border text-left font-display uppercase tracking-wider text-sm transition-all ${
-                    selectedGoal === goal
-                      ? "bg-primary text-primary-foreground border-primary"
-                      : "bg-card border-border text-muted-foreground hover:border-primary/50"
-                  }`}
-                >
-                  {goal}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Message */}
-          <div>
-            <div className="flex justify-between items-baseline mb-2">
-              <label
-                htmlFor="field-message"
-                className="text-sm font-display uppercase tracking-wider text-muted-foreground"
-              >
-                Mesaj (opțional)
-              </label>
-              <span
-                className={`text-xs tabular-nums transition-colors ${
-                  messageLength > 900
-                    ? "text-destructive"
-                    : "text-muted-foreground"
-                }`}
-              >
-                {messageLength}/1000
-              </span>
-            </div>
-            <Textarea
-              id="field-message"
-              name="message"
-              placeholder="Spune-mi mai multe despre experiența ta, obiective, etc..."
-              rows={4}
-              maxLength={1000}
-              onChange={(e) => setMessageLength(e.target.value.length)}
-              className="bg-card border-border rounded-sm focus:border-primary resize-none"
-            />
-          </div>
-
-          {/* GDPR Checkbox */}
-          <div className="flex items-start gap-3 rounded-sm border border-white/10 bg-black/20 p-4">
-            <input
-              id="field-gdpr"
-              type="checkbox"
-              checked={gdprAccepted}
-              onChange={(e) => setGdprAccepted(e.target.checked)}
-              className="mt-0.5 h-4 w-4 shrink-0 accent-[hsl(var(--primary))] cursor-pointer"
-            />
-            <label
-              htmlFor="field-gdpr"
-              className="text-xs text-muted-foreground leading-relaxed cursor-pointer"
+            {/* Honeypot anti-bot — invizibil pentru utilizatori, vizibil pentru boți */}
+            <div
+              style={{
+                position: "absolute",
+                left: "-9999px",
+                top: "-9999px",
+                opacity: 0,
+                pointerEvents: "none",
+              }}
+              aria-hidden="true"
             >
-              Sunt de acord cu prelucrarea datelor personale (nume, email,
-              telefon, date fizice) în scopul contactării pentru servicii de
-              coaching online. Datele nu vor fi stocate pe servere proprii și nu
-              vor fi transmise unor terți.{" "}
-              <a
-                href="/privacy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-primary transition-colors"
-                onClick={(e) => e.stopPropagation()}
-              >
-                Citește Politica de Confidențialitate
-              </a>
-              . Înțeleg că pot retrage consimțământul oricând.
-            </label>
-          </div>
+              <input
+                type="text"
+                name="website"
+                autoComplete="off"
+                tabIndex={-1}
+              />
+            </div>
 
-          <Button
-            type="submit"
-            disabled={isSubmitting}
-            size="lg"
-            className="w-full bg-primary text-primary-foreground hover:bg-gold-light font-display uppercase tracking-wider text-base py-6 rounded-sm"
-          >
-            {isSubmitting ? (
-              "Se trimite..."
-            ) : (
-              <>
-                <Send className="w-4 h-4 mr-2" />
-                Trimite Mesajul
-              </>
-            )}
-          </Button>
-        </motion.form>
+            {/* Name & Email */}
+            <div className="grid md:grid-cols-2 gap-5">
+              <div>
+                <label
+                  htmlFor="field-name"
+                  className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+                >
+                  Nume
+                </label>
+                <Input
+                  id="field-name"
+                  required
+                  name="name"
+                  placeholder="Numele tău"
+                  maxLength={100}
+                  autoComplete="name"
+                  className="bg-card border-border rounded-sm h-12 focus:border-primary"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="field-email"
+                  className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+                >
+                  Email
+                </label>
+                <Input
+                  id="field-email"
+                  required
+                  name="email"
+                  type="email"
+                  placeholder="email@exemplu.ro"
+                  maxLength={254}
+                  autoComplete="email"
+                  className="bg-card border-border rounded-sm h-12 focus:border-primary"
+                />
+              </div>
+            </div>
+
+            {/* Phone & Instagram */}
+            <div className="grid md:grid-cols-2 gap-5">
+              <div>
+                <label
+                  htmlFor="field-phone"
+                  className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+                >
+                  Telefon
+                </label>
+                <Input
+                  id="field-phone"
+                  required
+                  name="phone"
+                  type="tel"
+                  inputMode="tel"
+                  placeholder="07xx xxx xxx"
+                  maxLength={20}
+                  autoComplete="tel"
+                  className="bg-card border-border rounded-sm h-12 focus:border-primary"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="field-instagram"
+                  className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+                >
+                  <Instagram className="w-4 h-4 inline mr-1.5 -mt-0.5" />
+                  Instagram
+                </label>
+                <Input
+                  id="field-instagram"
+                  required
+                  name="instagram"
+                  placeholder="@username"
+                  maxLength={31}
+                  autoComplete="off"
+                  className="bg-card border-border rounded-sm h-12 focus:border-primary"
+                />
+              </div>
+            </div>
+
+            {/* Age, Height & Weight */}
+            <div className="grid md:grid-cols-3 gap-5">
+              <div>
+                <label
+                  htmlFor="field-age"
+                  className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+                >
+                  Vârstă
+                </label>
+                <Input
+                  id="field-age"
+                  required
+                  name="age"
+                  type="number"
+                  inputMode="numeric"
+                  min={14}
+                  max={99}
+                  placeholder="Ex: 28"
+                  className="bg-card border-border rounded-sm h-12 focus:border-primary"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="field-height"
+                  className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+                >
+                  Înălțime (cm)
+                </label>
+                <Input
+                  id="field-height"
+                  required
+                  name="height"
+                  type="number"
+                  inputMode="numeric"
+                  min={100}
+                  max={250}
+                  placeholder="Ex: 180"
+                  className="bg-card border-border rounded-sm h-12 focus:border-primary"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="field-weight"
+                  className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+                >
+                  Greutate (kg)
+                </label>
+                <Input
+                  id="field-weight"
+                  required
+                  name="weight"
+                  type="number"
+                  inputMode="numeric"
+                  min={30}
+                  max={200}
+                  placeholder="Ex: 85"
+                  className="bg-card border-border rounded-sm h-12 focus:border-primary"
+                />
+              </div>
+            </div>
+
+            {/* Duration */}
+            <div>
+              <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-3 block">
+                Pe câte luni vrei să lucrăm?
+              </label>
+              <input type="hidden" name="duration" value={selectedDuration} />
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {durations.map((d) => (
+                  <button
+                    key={d}
+                    type="button"
+                    onClick={() => setSelectedDuration(d)}
+                    className={`py-3 px-4 rounded-sm border font-display uppercase tracking-wider text-sm transition-all ${
+                      selectedDuration === d
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "bg-card border-border text-muted-foreground hover:border-primary/50"
+                    }`}
+                  >
+                    {d}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Goal */}
+            <div>
+              <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-3 block">
+                Care este scopul tău?
+              </label>
+              <input type="hidden" name="goal" value={selectedGoal} />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {goals.map((goal) => (
+                  <button
+                    key={goal}
+                    type="button"
+                    onClick={() => setSelectedGoal(goal)}
+                    className={`py-3 px-4 rounded-sm border text-left font-display uppercase tracking-wider text-sm transition-all ${
+                      selectedGoal === goal
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "bg-card border-border text-muted-foreground hover:border-primary/50"
+                    }`}
+                  >
+                    {goal}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Message */}
+            <div>
+              <div className="flex justify-between items-baseline mb-2">
+                <label
+                  htmlFor="field-message"
+                  className="text-sm font-display uppercase tracking-wider text-muted-foreground"
+                >
+                  Mesaj (opțional)
+                </label>
+                <span
+                  className={`text-xs tabular-nums transition-colors ${
+                    messageLength > 900
+                      ? "text-destructive"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  {messageLength}/1000
+                </span>
+              </div>
+              <Textarea
+                id="field-message"
+                name="message"
+                placeholder="Spune-mi mai multe despre experiența ta, obiective, etc..."
+                rows={4}
+                maxLength={1000}
+                onChange={(e) => setMessageLength(e.target.value.length)}
+                className="bg-card border-border rounded-sm focus:border-primary resize-none"
+              />
+            </div>
+
+            {/* GDPR Checkbox */}
+            <div className="flex items-start gap-3 rounded-sm border border-white/10 bg-black/20 p-4">
+              <input
+                id="field-gdpr"
+                type="checkbox"
+                checked={gdprAccepted}
+                onChange={(e) => setGdprAccepted(e.target.checked)}
+                className="mt-0.5 h-4 w-4 shrink-0 accent-[hsl(var(--primary))] cursor-pointer"
+              />
+              <label
+                htmlFor="field-gdpr"
+                className="text-xs text-muted-foreground leading-relaxed cursor-pointer"
+              >
+                Sunt de acord cu prelucrarea datelor personale (nume, email,
+                telefon, date fizice) în scopul contactării pentru servicii de
+                coaching online. Datele nu vor fi stocate pe servere proprii și
+                nu vor fi transmise unor terți.{" "}
+                <a
+                  href="/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-primary transition-colors"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  Citește Politica de Confidențialitate
+                </a>
+                . Înțeleg că pot retrage consimțământul oricând.
+              </label>
+            </div>
+
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              size="lg"
+              className="w-full bg-primary text-primary-foreground hover:bg-gold-light font-display uppercase tracking-wider text-base py-6 rounded-sm"
+            >
+              {isSubmitting ? (
+                "Se trimite..."
+              ) : (
+                <>
+                  <Send className="w-4 h-4 mr-2" />
+                  Trimite Mesajul
+                </>
+              )}
+            </Button>
+          </motion.form>
         )}
       </div>
     </section>
