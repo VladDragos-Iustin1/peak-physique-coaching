@@ -186,477 +186,602 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden py-24 md:py-32">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(255,205,110,0.12),_transparent_45%)]" />
-      <div className="container mx-auto px-6 max-w-5xl relative">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center"
-        >
-          <h1 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight">
-            Transformă-ți <span className="text-primary">corpul</span>
-          </h1>
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Coaching personalizat. Rezultate reale. Completează formularul de
-            mai jos și hai să începem.
-          </p>
-        </motion.div>
+    <>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="fixed top-4 left-6 md:left-6 lg:left-8 z-50 hidden md:block"
+      >
+        <img
+          src="/logo1.png"
+          alt="Logo"
+          className="h-28 lg:h-32 w-auto opacity-90"
+        />
+      </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="mt-12"
-        >
-          <div className="grid md:grid-cols-2 gap-4 rounded-2xl border border-white/10 bg-black/30 p-3 shadow-[0_0_40px_rgba(255,205,110,0.08)]">
-            <div className="overflow-hidden rounded-xl">
-              <img
-                src="/photo/1.jpeg"
-                alt="Transformare client "
-                className="w-full h-auto"
-              />
-            </div>
-            <div className="overflow-hidden rounded-xl">
-              <img
-                src="/photo/2.jpeg"
-                alt="Transformare client2"
-                className="w-full h-auto"
-              />
-            </div>
-          </div>
-          <p className="text-xs text-muted-foreground text-center mt-3">
-            Rezultatele clienților mei — poze reale, muncă reală.
-          </p>
-        </motion.div>
+      <section
+        id="contact"
+        className="relative overflow-hidden pt-8 pb-24 md:py-32"
+      >
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(255,205,110,0.12),_transparent_45%)]" />
+        <div className="container mx-auto px-6 max-w-5xl relative">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-center mb-4 md:hidden"
+          >
+            <img
+              src="/logo1.png"
+              alt="Logo"
+              className="h-20 w-auto opacity-90"
+            />
+          </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="mt-12 rounded-2xl border border-white/10 bg-card/80 p-6 md:p-10 shadow-[0_0_50px_rgba(0,0,0,0.4)] backdrop-blur"
-        >
-          <h3 className="font-display text-xl md:text-2xl font-bold uppercase text-primary mb-6 flex items-center gap-2">
-            🔥 Ce primești în cadrul coachingului
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-foreground/90">
-            {[
-              {
-                icon: Dumbbell,
-                text: "Program de antrenament complet, personalizat 100% în funcție de obiectivele tale",
-              },
-              {
-                icon: Utensils,
-                text: "Plan nutrițional adaptat fazei în care te afli (masă / definire / menținere) – include plan alimentar complet, calcul de macronutrienți & calorii, monitorizare lichide & sare",
-              },
-              {
-                icon: FlaskConical,
-                text: "Protocol de suplimentare personalizat",
-              },
-              {
-                icon: Video,
-                text: "Analiză video a execuției exercițiilor",
-              },
-              {
-                icon: HeartPulse,
-                text: "Monitorizarea recuperării",
-              },
-              {
-                icon: Beef,
-                text: "Monitorizarea digestiei",
-              },
-              {
-                icon: Moon,
-                text: "Monitorizarea somnului",
-              },
-              {
-                icon: MessageCircle,
-                text: "Suport 24/7 pe WhatsApp",
-              },
-            ].map(({ icon: Icon, text }) => (
-              <div
-                key={text}
-                className="group flex items-start gap-3 rounded-xl border border-white/10 bg-card/40 p-4 transition-all duration-300 hover:border-primary/40 hover:bg-card/70 hover:shadow-[0_0_24px_rgba(255,205,110,0.12)] cursor-default"
-              >
-                <span className="mt-0.5 shrink-0 text-primary/70 group-hover:text-primary transition-colors duration-300">
-                  <Icon size={18} />
-                </span>
-                <span className="text-sm leading-relaxed">{text}</span>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <h1 className="font-display text-4xl md:text-5xl font-bold uppercase tracking-tight">
+              Build Muscle Train Smart
+              <br />
+              <span className="text-primary">Stay Natural</span>
+            </h1>
+            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
+              Coaching personalizat. Rezultate reale. Completează formularul de
+              mai jos și hai să începem.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mt-12"
+          >
+            <div className="grid md:grid-cols-2 gap-4 rounded-2xl border border-white/10 bg-black/30 p-3 shadow-[0_0_40px_rgba(255,205,110,0.08)]">
+              <div className="overflow-hidden rounded-xl">
+                <img
+                  src="/photo/1.jpeg"
+                  alt="Transformare client "
+                  className="w-full h-auto"
+                />
               </div>
-            ))}
-          </div>
+              <div className="overflow-hidden rounded-xl">
+                <img
+                  src="/photo/2.jpeg"
+                  alt="Transformare client2"
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+            <p className="text-xs text-muted-foreground text-center mt-3">
+              Rezultatele clienților mei — poze reale, muncă reală.
+            </p>
+          </motion.div>
 
-          <div className="mt-8 pt-6 border-t border-white/10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="mt-12 rounded-2xl border border-white/10 bg-card/80 p-6 md:p-10 shadow-[0_0_50px_rgba(0,0,0,0.4)] backdrop-blur"
+          >
             <h3 className="font-display text-xl md:text-2xl font-bold uppercase text-primary mb-6 flex items-center gap-2">
-              📅 Sistem de check-in
+              🔥 Ce primești în cadrul coachingului
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-foreground/90">
               {[
                 {
-                  icon: CalendarDays,
-                  label: "Off-season",
-                  text: "1 check-in oficial pe săptămână",
+                  icon: Dumbbell,
+                  text: "Program de antrenament complet, personalizat 100% în funcție de obiectivele tale",
                 },
                 {
-                  icon: CalendarCheck2,
-                  label: "Prep (pregătire competițională)",
-                  text: "check-in zilnic",
+                  icon: Utensils,
+                  text: "Plan nutrițional adaptat fazei în care te afli (masă / definire / menținere) – include plan alimentar complet, calcul de macronutrienți & calorii, monitorizare lichide & sare",
                 },
-              ].map(({ icon: Icon, label, text }) => (
+                {
+                  icon: FlaskConical,
+                  text: "Protocol de suplimentare personalizat",
+                },
+                {
+                  icon: Video,
+                  text: "Analiză video a execuției exercițiilor",
+                },
+                {
+                  icon: HeartPulse,
+                  text: "Monitorizarea recuperării",
+                },
+                {
+                  icon: Beef,
+                  text: "Monitorizarea digestiei",
+                },
+                {
+                  icon: Moon,
+                  text: "Monitorizarea somnului",
+                },
+                {
+                  icon: MessageCircle,
+                  text: "Suport 24/7 pe WhatsApp",
+                },
+              ].map(({ icon: Icon, text }) => (
                 <div
-                  key={label}
+                  key={text}
                   className="group flex items-start gap-3 rounded-xl border border-white/10 bg-card/40 p-4 transition-all duration-300 hover:border-primary/40 hover:bg-card/70 hover:shadow-[0_0_24px_rgba(255,205,110,0.12)] cursor-default"
                 >
                   <span className="mt-0.5 shrink-0 text-primary/70 group-hover:text-primary transition-colors duration-300">
                     <Icon size={18} />
                   </span>
-                  <span className="text-sm leading-relaxed">
-                    <strong className="text-foreground block mb-0.5">
-                      {label}:
-                    </strong>
-                    {text}
-                  </span>
+                  <span className="text-sm leading-relaxed">{text}</span>
                 </div>
               ))}
             </div>
-          </div>
-        </motion.div>
 
-        {submitted ? (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="mt-12 rounded-2xl border border-primary/30 bg-card/80 p-10 md:p-16 shadow-[0_0_50px_rgba(255,205,110,0.12)] backdrop-blur text-center"
-          >
-            <div className="text-5xl mb-6">🏆</div>
-            <h2 className="font-display text-2xl md:text-3xl font-bold uppercase mb-3">
-              Mesaj trimis cu succes!
-            </h2>
-            <p className="text-muted-foreground max-w-sm mx-auto mb-8">
-              Te voi contacta în maximum{" "}
-              <span className="text-primary font-semibold">24 de ore</span>.
-              Pregătește-te să începi transformarea.
-            </p>
-            <Button
-              onClick={() => setSubmitted(false)}
-              variant="outline"
-              className="border-white/20 text-muted-foreground hover:text-foreground font-display uppercase tracking-wider text-xs rounded-sm"
-            >
-              Trimite alt mesaj
-            </Button>
+            <div className="mt-8 pt-6 border-t border-white/10">
+              <h3 className="font-display text-xl md:text-2xl font-bold uppercase text-primary mb-6 flex items-center gap-2">
+                📅 Sistem de check-in
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-foreground/90">
+                {[
+                  {
+                    icon: CalendarDays,
+                    label: "Standard",
+                    text: "check-in o dată pe săptămână",
+                  },
+                  {
+                    icon: CalendarCheck2,
+                    label: "Prep (pregătire competițională)",
+                    text: "check-in zilnic",
+                  },
+                ].map(({ icon: Icon, label, text }) => (
+                  <div
+                    key={label}
+                    className="group flex items-start gap-3 rounded-xl border border-white/10 bg-card/40 p-4 transition-all duration-300 hover:border-primary/40 hover:bg-card/70 hover:shadow-[0_0_24px_rgba(255,205,110,0.12)] cursor-default"
+                  >
+                    <span className="mt-0.5 shrink-0 text-primary/70 group-hover:text-primary transition-colors duration-300">
+                      <Icon size={18} />
+                    </span>
+                    <span className="text-sm leading-relaxed">
+                      <strong className="text-foreground block mb-0.5">
+                        {label}:
+                      </strong>
+                      {text}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 pt-6 border-t border-white/10">
+              <h3 className="font-display text-xl md:text-2xl font-bold uppercase text-primary mb-6 flex items-center gap-2">
+                📋 Cum funcționează
+              </h3>
+              <div className="rounded-xl border border-primary/20 bg-card/30 p-6 text-foreground/90">
+                <p className="text-sm leading-relaxed mb-4">
+                  <strong className="text-primary">
+                    După trimiterea formularului
+                  </strong>
+                  , vei primi acces la un video explicativ în care îți prezint
+                  metodologia mea de lucru, structura programului și așteptările
+                  colaborării.
+                </p>
+                <p className="text-sm leading-relaxed">
+                  Dacă dorești, poți programa ulterior un apel de consultare
+                  pentru a discuta obiectivele tale și pentru a vedea dacă
+                  suntem potriviți să lucrăm împreună.
+                </p>
+              </div>
+            </div>
           </motion.div>
-        ) : (
-          <motion.form
-            onSubmit={handleSubmit}
+
+          {submitted ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="mt-12 rounded-2xl border border-primary/30 bg-card/80 p-10 md:p-16 shadow-[0_0_50px_rgba(255,205,110,0.12)] backdrop-blur text-center"
+            >
+              <div className="text-5xl mb-6">🏆</div>
+              <h2 className="font-display text-2xl md:text-3xl font-bold uppercase mb-3">
+                Mesaj trimis cu succes!
+              </h2>
+              <p className="text-muted-foreground max-w-sm mx-auto mb-6">
+                Te voi contacta în maximum{" "}
+                <span className="text-primary font-semibold">24 de ore</span>.
+                Pregătește-te să începi transformarea.
+              </p>
+              <div className="max-w-lg mx-auto mb-8 p-6 rounded-xl border border-primary/20 bg-card/30 text-left">
+                <h3 className="font-display text-sm uppercase tracking-wider text-primary mb-3 font-semibold">
+                  📋 Pașii următori:
+                </h3>
+                <p className="text-sm text-foreground/90 leading-relaxed mb-3">
+                  Primești acces la un{" "}
+                  <strong className="text-primary">video explicativ</strong> cu
+                  metodologia mea de lucru și structura programului.
+                </p>
+                <p className="text-sm text-foreground/90 leading-relaxed">
+                  Opțional, poți programa un{" "}
+                  <strong className="text-primary">apel de consultare</strong>{" "}
+                  pentru a discuta obiectivele tale.
+                </p>
+              </div>
+              <Button
+                onClick={() => setSubmitted(false)}
+                variant="outline"
+                className="border-white/20 text-muted-foreground hover:text-foreground font-display uppercase tracking-wider text-xs rounded-sm"
+              >
+                Trimite alt mesaj
+              </Button>
+            </motion.div>
+          ) : (
+            <motion.form
+              onSubmit={handleSubmit}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-12 space-y-6 rounded-2xl border border-white/10 bg-card/80 p-6 md:p-10 shadow-[0_0_50px_rgba(0,0,0,0.4)] backdrop-blur"
+            >
+              <div>
+                <p className="text-primary font-display uppercase tracking-[0.2em] text-sm mb-2">
+                  Contactează-mă
+                </p>
+                <h2 className="font-display text-2xl md:text-3xl font-bold uppercase">
+                  Completează formularul
+                </h2>
+                <p className="text-muted-foreground mt-3">
+                  Completează datele de mai jos și te contactez eu.
+                </p>
+              </div>
+              {/* Honeypot anti-bot — invizibil pentru utilizatori, vizibil pentru boți */}
+              <div
+                style={{
+                  position: "absolute",
+                  left: "-9999px",
+                  top: "-9999px",
+                  opacity: 0,
+                  pointerEvents: "none",
+                }}
+                aria-hidden="true"
+              >
+                <input
+                  type="text"
+                  name="website"
+                  autoComplete="off"
+                  tabIndex={-1}
+                />
+              </div>
+
+              {/* Name & Email */}
+              <div className="grid md:grid-cols-2 gap-5">
+                <div>
+                  <label
+                    htmlFor="field-name"
+                    className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+                  >
+                    Nume
+                  </label>
+                  <Input
+                    id="field-name"
+                    required
+                    name="name"
+                    placeholder="Numele tău"
+                    maxLength={100}
+                    autoComplete="name"
+                    className="bg-card border-border rounded-sm h-12 focus:border-primary"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="field-email"
+                    className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+                  >
+                    Email
+                  </label>
+                  <Input
+                    id="field-email"
+                    required
+                    name="email"
+                    type="email"
+                    placeholder="email@exemplu.ro"
+                    maxLength={254}
+                    autoComplete="email"
+                    className="bg-card border-border rounded-sm h-12 focus:border-primary"
+                  />
+                </div>
+              </div>
+
+              {/* Phone & Instagram */}
+              <div className="grid md:grid-cols-2 gap-5">
+                <div>
+                  <label
+                    htmlFor="field-phone"
+                    className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+                  >
+                    Telefon
+                  </label>
+                  <Input
+                    id="field-phone"
+                    required
+                    name="phone"
+                    type="tel"
+                    inputMode="tel"
+                    placeholder="07xx xxx xxx"
+                    maxLength={20}
+                    autoComplete="tel"
+                    className="bg-card border-border rounded-sm h-12 focus:border-primary"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="field-instagram"
+                    className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+                  >
+                    <Instagram className="w-4 h-4 inline mr-1.5 -mt-0.5" />
+                    Instagram
+                  </label>
+                  <Input
+                    id="field-instagram"
+                    required
+                    name="instagram"
+                    placeholder="@username"
+                    maxLength={31}
+                    autoComplete="off"
+                    className="bg-card border-border rounded-sm h-12 focus:border-primary"
+                  />
+                </div>
+              </div>
+
+              {/* Age, Height & Weight */}
+              <div className="grid md:grid-cols-3 gap-5">
+                <div>
+                  <label
+                    htmlFor="field-age"
+                    className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+                  >
+                    Vârstă
+                  </label>
+                  <Input
+                    id="field-age"
+                    required
+                    name="age"
+                    type="number"
+                    inputMode="numeric"
+                    min={14}
+                    max={99}
+                    placeholder="Ex: 28"
+                    className="bg-card border-border rounded-sm h-12 focus:border-primary"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="field-height"
+                    className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+                  >
+                    Înălțime (cm)
+                  </label>
+                  <Input
+                    id="field-height"
+                    required
+                    name="height"
+                    type="number"
+                    inputMode="numeric"
+                    min={100}
+                    max={250}
+                    placeholder="Ex: 180"
+                    className="bg-card border-border rounded-sm h-12 focus:border-primary"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="field-weight"
+                    className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
+                  >
+                    Greutate (kg)
+                  </label>
+                  <Input
+                    id="field-weight"
+                    required
+                    name="weight"
+                    type="number"
+                    inputMode="numeric"
+                    min={30}
+                    max={200}
+                    placeholder="Ex: 85"
+                    className="bg-card border-border rounded-sm h-12 focus:border-primary"
+                  />
+                </div>
+              </div>
+
+              {/* Duration */}
+              <div>
+                <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-3 block">
+                  Pe câte luni vrei să lucrăm?
+                </label>
+                <input type="hidden" name="duration" value={selectedDuration} />
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {durations.map((d) => (
+                    <button
+                      key={d}
+                      type="button"
+                      onClick={() => setSelectedDuration(d)}
+                      className={`py-3 px-4 rounded-sm border font-display uppercase tracking-wider text-sm transition-all ${
+                        selectedDuration === d
+                          ? "bg-primary text-primary-foreground border-primary"
+                          : "bg-card border-border text-muted-foreground hover:border-primary/50"
+                      }`}
+                    >
+                      {d}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Goal */}
+              <div>
+                <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-3 block">
+                  Care este scopul tău?
+                </label>
+                <input type="hidden" name="goal" value={selectedGoal} />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {goals.map((goal) => (
+                    <button
+                      key={goal}
+                      type="button"
+                      onClick={() => setSelectedGoal(goal)}
+                      className={`py-3 px-4 rounded-sm border text-left font-display uppercase tracking-wider text-sm transition-all ${
+                        selectedGoal === goal
+                          ? "bg-primary text-primary-foreground border-primary"
+                          : "bg-card border-border text-muted-foreground hover:border-primary/50"
+                      }`}
+                    >
+                      {goal}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Message */}
+              <div>
+                <div className="flex justify-between items-baseline mb-2">
+                  <label
+                    htmlFor="field-message"
+                    className="text-sm font-display uppercase tracking-wider text-muted-foreground"
+                  >
+                    Mesaj (opțional)
+                  </label>
+                  <span
+                    className={`text-xs tabular-nums transition-colors ${
+                      messageLength > 900
+                        ? "text-destructive"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    {messageLength}/1000
+                  </span>
+                </div>
+                <Textarea
+                  id="field-message"
+                  name="message"
+                  placeholder="Spune-mi mai multe despre experiența ta, obiective, etc..."
+                  rows={4}
+                  maxLength={1000}
+                  onChange={(e) => setMessageLength(e.target.value.length)}
+                  className="bg-card border-border rounded-sm focus:border-primary resize-none"
+                />
+              </div>
+
+              {/* GDPR Checkbox */}
+              <div className="flex items-start gap-3 rounded-sm border border-white/10 bg-black/20 p-4">
+                <input
+                  id="field-gdpr"
+                  type="checkbox"
+                  checked={gdprAccepted}
+                  onChange={(e) => setGdprAccepted(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-[hsl(var(--primary))] cursor-pointer"
+                />
+                <label
+                  htmlFor="field-gdpr"
+                  className="text-xs text-muted-foreground leading-relaxed cursor-pointer"
+                >
+                  Sunt de acord cu prelucrarea datelor personale (nume, email,
+                  telefon, date fizice) în scopul contactării pentru servicii de
+                  coaching online. Datele nu vor fi stocate pe servere proprii
+                  și nu vor fi transmise unor terți.{" "}
+                  <a
+                    href="/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:text-primary transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Citește Politica de Confidențialitate
+                  </a>
+                  . Înțeleg că pot retrage consimțământul oricând.
+                </label>
+              </div>
+
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                size="lg"
+                className="w-full bg-primary text-primary-foreground hover:bg-gold-light font-display uppercase tracking-wider text-base py-6 rounded-sm"
+              >
+                {isSubmitting ? (
+                  "Se trimite..."
+                ) : (
+                  <>
+                    <Send className="w-4 h-4 mr-2" />
+                    Trimite Mesajul
+                  </>
+                )}
+              </Button>
+            </motion.form>
+          )}
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-12 space-y-6 rounded-2xl border border-white/10 bg-card/80 p-6 md:p-10 shadow-[0_0_50px_rgba(0,0,0,0.4)] backdrop-blur"
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-12 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-8 md:p-10 shadow-[0_0_50px_rgba(255,205,110,0.15)] backdrop-blur"
           >
-            <div>
-              <p className="text-primary font-display uppercase tracking-[0.2em] text-sm mb-2">
-                Contactează-mă
-              </p>
-              <h2 className="font-display text-2xl md:text-3xl font-bold uppercase">
-                Completează formularul
-              </h2>
-              <p className="text-muted-foreground mt-3">
-                Completează datele de mai jos și te contactez pe Instagram.
-              </p>
-            </div>
-            {/* Honeypot anti-bot — invizibil pentru utilizatori, vizibil pentru boți */}
-            <div
-              style={{
-                position: "absolute",
-                left: "-9999px",
-                top: "-9999px",
-                opacity: 0,
-                pointerEvents: "none",
-              }}
-              aria-hidden="true"
-            >
-              <input
-                type="text"
-                name="website"
-                autoComplete="off"
-                tabIndex={-1}
-              />
-            </div>
-
-            {/* Name & Email */}
-            <div className="grid md:grid-cols-2 gap-5">
-              <div>
-                <label
-                  htmlFor="field-name"
-                  className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
-                >
-                  Nume
-                </label>
-                <Input
-                  id="field-name"
-                  required
-                  name="name"
-                  placeholder="Numele tău"
-                  maxLength={100}
-                  autoComplete="name"
-                  className="bg-card border-border rounded-sm h-12 focus:border-primary"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="field-email"
-                  className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
-                >
-                  Email
-                </label>
-                <Input
-                  id="field-email"
-                  required
-                  name="email"
-                  type="email"
-                  placeholder="email@exemplu.ro"
-                  maxLength={254}
-                  autoComplete="email"
-                  className="bg-card border-border rounded-sm h-12 focus:border-primary"
-                />
-              </div>
-            </div>
-
-            {/* Phone & Instagram */}
-            <div className="grid md:grid-cols-2 gap-5">
-              <div>
-                <label
-                  htmlFor="field-phone"
-                  className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
-                >
-                  Telefon
-                </label>
-                <Input
-                  id="field-phone"
-                  required
-                  name="phone"
-                  type="tel"
-                  inputMode="tel"
-                  placeholder="07xx xxx xxx"
-                  maxLength={20}
-                  autoComplete="tel"
-                  className="bg-card border-border rounded-sm h-12 focus:border-primary"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="field-instagram"
-                  className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
-                >
-                  <Instagram className="w-4 h-4 inline mr-1.5 -mt-0.5" />
-                  Instagram
-                </label>
-                <Input
-                  id="field-instagram"
-                  required
-                  name="instagram"
-                  placeholder="@username"
-                  maxLength={31}
-                  autoComplete="off"
-                  className="bg-card border-border rounded-sm h-12 focus:border-primary"
-                />
-              </div>
-            </div>
-
-            {/* Age, Height & Weight */}
-            <div className="grid md:grid-cols-3 gap-5">
-              <div>
-                <label
-                  htmlFor="field-age"
-                  className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
-                >
-                  Vârstă
-                </label>
-                <Input
-                  id="field-age"
-                  required
-                  name="age"
-                  type="number"
-                  inputMode="numeric"
-                  min={14}
-                  max={99}
-                  placeholder="Ex: 28"
-                  className="bg-card border-border rounded-sm h-12 focus:border-primary"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="field-height"
-                  className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
-                >
-                  Înălțime (cm)
-                </label>
-                <Input
-                  id="field-height"
-                  required
-                  name="height"
-                  type="number"
-                  inputMode="numeric"
-                  min={100}
-                  max={250}
-                  placeholder="Ex: 180"
-                  className="bg-card border-border rounded-sm h-12 focus:border-primary"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="field-weight"
-                  className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-2 block"
-                >
-                  Greutate (kg)
-                </label>
-                <Input
-                  id="field-weight"
-                  required
-                  name="weight"
-                  type="number"
-                  inputMode="numeric"
-                  min={30}
-                  max={200}
-                  placeholder="Ex: 85"
-                  className="bg-card border-border rounded-sm h-12 focus:border-primary"
-                />
-              </div>
-            </div>
-
-            {/* Duration */}
-            <div>
-              <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-3 block">
-                Pe câte luni vrei să lucrăm?
-              </label>
-              <input type="hidden" name="duration" value={selectedDuration} />
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {durations.map((d) => (
-                  <button
-                    key={d}
-                    type="button"
-                    onClick={() => setSelectedDuration(d)}
-                    className={`py-3 px-4 rounded-sm border font-display uppercase tracking-wider text-sm transition-all ${
-                      selectedDuration === d
-                        ? "bg-primary text-primary-foreground border-primary"
-                        : "bg-card border-border text-muted-foreground hover:border-primary/50"
-                    }`}
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="font-display text-2xl md:text-3xl font-bold uppercase mb-3 flex items-center justify-center md:justify-start gap-3">
+                  <Instagram className="w-8 h-8 text-primary" />
+                  Follow me pe Instagram
+                </h3>
+                <p className="text-muted-foreground text-base mb-4">
+                  Urmărește-mă pentru sfaturi zilnice, transformări reale și
+                  motivație everyday! 💪
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+                  <a
+                    href="https://www.instagram.com/galatarazvan/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-display uppercase tracking-wider text-sm rounded-sm hover:bg-gold-light transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(255,205,110,0.3)]"
                   >
-                    {d}
-                  </button>
-                ))}
+                    <Instagram className="w-5 h-5" />
+                    @galatarazvan
+                  </a>
+                </div>
+              </div>
+              <div className="shrink-0">
+                <div className="relative w-32 h-32 md:w-40 md:h-40">
+                  <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl" />
+                  <Instagram className="relative w-full h-full text-primary/30" />
+                </div>
               </div>
             </div>
+          </motion.div>
 
-            {/* Goal */}
-            <div>
-              <label className="text-sm font-display uppercase tracking-wider text-muted-foreground mb-3 block">
-                Care este scopul tău?
-              </label>
-              <input type="hidden" name="goal" value={selectedGoal} />
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {goals.map((goal) => (
-                  <button
-                    key={goal}
-                    type="button"
-                    onClick={() => setSelectedGoal(goal)}
-                    className={`py-3 px-4 rounded-sm border text-left font-display uppercase tracking-wider text-sm transition-all ${
-                      selectedGoal === goal
-                        ? "bg-primary text-primary-foreground border-primary"
-                        : "bg-card border-border text-muted-foreground hover:border-primary/50"
-                    }`}
-                  >
-                    {goal}
-                  </button>
-                ))}
-              </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-12 py-8 relative"
+          >
+            <div className="text-center">
+              <blockquote className="font-display text-2xl md:text-4xl font-bold uppercase tracking-tight text-primary mb-2">
+                Răbdare și muncă
+              </blockquote>
+              <p className="text-muted-foreground text-xs md:text-sm uppercase tracking-[0.15em] font-display">
+                Cheia transformării
+              </p>
             </div>
-
-            {/* Message */}
-            <div>
-              <div className="flex justify-between items-baseline mb-2">
-                <label
-                  htmlFor="field-message"
-                  className="text-sm font-display uppercase tracking-wider text-muted-foreground"
-                >
-                  Mesaj (opțional)
-                </label>
-                <span
-                  className={`text-xs tabular-nums transition-colors ${
-                    messageLength > 900
-                      ? "text-destructive"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  {messageLength}/1000
-                </span>
-              </div>
-              <Textarea
-                id="field-message"
-                name="message"
-                placeholder="Spune-mi mai multe despre experiența ta, obiective, etc..."
-                rows={4}
-                maxLength={1000}
-                onChange={(e) => setMessageLength(e.target.value.length)}
-                className="bg-card border-border rounded-sm focus:border-primary resize-none"
-              />
-            </div>
-
-            {/* GDPR Checkbox */}
-            <div className="flex items-start gap-3 rounded-sm border border-white/10 bg-black/20 p-4">
-              <input
-                id="field-gdpr"
-                type="checkbox"
-                checked={gdprAccepted}
-                onChange={(e) => setGdprAccepted(e.target.checked)}
-                className="mt-0.5 h-4 w-4 shrink-0 accent-[hsl(var(--primary))] cursor-pointer"
-              />
-              <label
-                htmlFor="field-gdpr"
-                className="text-xs text-muted-foreground leading-relaxed cursor-pointer"
-              >
-                Sunt de acord cu prelucrarea datelor personale (nume, email,
-                telefon, date fizice) în scopul contactării pentru servicii de
-                coaching online. Datele nu vor fi stocate pe servere proprii și
-                nu vor fi transmise unor terți.{" "}
-                <a
-                  href="/privacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-primary transition-colors"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  Citește Politica de Confidențialitate
-                </a>
-                . Înțeleg că pot retrage consimțământul oricând.
-              </label>
-            </div>
-
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              size="lg"
-              className="w-full bg-primary text-primary-foreground hover:bg-gold-light font-display uppercase tracking-wider text-base py-6 rounded-sm"
-            >
-              {isSubmitting ? (
-                "Se trimite..."
-              ) : (
-                <>
-                  <Send className="w-4 h-4 mr-2" />
-                  Trimite Mesajul
-                </>
-              )}
-            </Button>
-          </motion.form>
-        )}
-      </div>
-    </section>
+          </motion.div>
+        </div>
+      </section>
+    </>
   );
 };
 
